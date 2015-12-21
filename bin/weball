@@ -1,0 +1,33 @@
+#!/usr/local/weball/env/bin/python3
+
+#IMPORTS...
+from colorama import Fore, Back, Style
+import click
+import time
+import sys
+import os
+
+#FUNCTIONS ARE BIRTHED...
+def pop():
+	sys.stdout.write(Style.BRIGHT + "==> " + Style.RESET_ALL)
+
+def go(command, message):
+	pop()
+	os.system(command)
+	print(Style.BRIGHT + Fore.GREEN + message + Fore.RESET + Style.RESET_ALL)
+
+#THE BIG DOG...
+@click.command()
+def weball():
+	'''Web app scafolding...'''
+	go('touch ~/weball_dump', 'Setting up...')
+	time.sleep(2)
+	go('git clone https://github.com/Weball/weball-src.git > ~/weball_dump', 'Downloading...')
+	time.sleep(2)
+	go('rm ~/weball_dump', 'Finalizing...')
+	time.sleep(2)
+	pop()
+	print(Style.BRIGHT + Fore.GREEN + 'Cleaning up...' + Style.RESET_ALL + Fore.RESET)
+
+if __name__ == '__main__':
+	weball()
