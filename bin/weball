@@ -17,12 +17,17 @@ def go(command, message):
 	print(Style.BRIGHT + Fore.GREEN + message + Fore.RESET + Style.RESET_ALL)
 
 #THE BIG DOG...
-@click.command()
+@click.group()
 def weball():
 	'''Web app scafolding...'''
+	pass
+
+@weball.command()
+@click.argument('name', default='WeballProject')
+def new(name):
 	go('touch ~/weball_dump', 'Setting up...')
 	time.sleep(2)
-	go('git clone https://github.com/Weball/weball-src.git > ~/weball_dump', 'Downloading...')
+	go('git clone https://github.com/Weball/weball-src.git %s > ~/weball_dump' % (name), 'Downloading...')
 	time.sleep(2)
 	go('rm ~/weball_dump', 'Finalizing...')
 	time.sleep(2)
